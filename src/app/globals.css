@@ -125,8 +125,6 @@
 }
 
 .modal-scroll {
-  @apply max-h-[80vh] overflow-y-auto bg-black text-white p-6 rounded-lg;
-
   /* Firefox */
   scrollbar-width: thin;
   scrollbar-color: #4b5563 #1b1b1b; /* thumb / track */
@@ -138,17 +136,16 @@
 }
 
 .modal-scroll::-webkit-scrollbar-track {
-  background-color: #1b1b1b; /* темний фон треку */
+  background-color: #1b1b1b;
   border-radius: 4px;
 }
 
 .modal-scroll::-webkit-scrollbar-thumb {
-  background-color: #374151; /* темно-сірий/indigo-ish thumb */
+  background-color: #374151;
   border-radius: 4px;
-  border: 2px solid #1b1b1b; /* padding effect */
+  border: 2px solid #1b1b1b;
 }
 
-/* Додатково: плавний hover для сучасного вигляду */
 .modal-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: #4b5563; /* трохи світліший при ховері */
+  background-color: #4b5563;
 }

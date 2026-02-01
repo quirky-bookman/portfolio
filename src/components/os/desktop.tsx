@@ -3,26 +3,74 @@
 import { useState } from "react";
 import Shortcut from "./shortcut";
 import { Window } from "./window";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 
 export function Desktop() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+  const [isProjectsOpen, setIsProjectsOpen] = useState(false);
 
   return (
     <div>
       <Shortcut label="Resume.pdf" icon={<span className="text-4xl">📄</span>} onClick={() => setIsResumeOpen(true)} />
 
-      {/* <Shortcut label="Resume.pdf" icon={<span className="text-4xl">📄</span>} /> */}
-
       <Shortcut label="About Me" icon={<span className="text-4xl">👤</span>} onClick={() => setIsAboutMeOpen(true)} />
 
-      <Shortcut label="Projects" icon={<span className="text-4xl">📁</span>} />
+      <Shortcut label="Projects" icon={<span className="text-4xl">📁</span>} onClick={() => setIsProjectsOpen(true)} />
 
-      <Shortcut label="Settings" icon={<span className="text-4xl">⚙️</span>} />
+      {/* <Shortcut label="Settings" icon={<span className="text-4xl">⚙️</span>} /> */}
+
+      <Window isOpen={isProjectsOpen} onClose={() => setIsProjectsOpen(false)} title="Resume.pdf" icon="📄">
+        <div className="prose prose-invert">
+          <div className="max-w-4xl mx-auto p-6 bg-black text-gray-300">
+            <h2 className="text-2xl font-bold mb-10 text-white border-b border-gray-800 pb-4">Projects</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="md:col-span-1 flex flex-col justify-start">
+                <h3 className="text-xl font-semibold text-white mb-2">Speedrack West</h3>
+                <a href="https://www.speedrackwest.com/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
+                  Visit Website
+                  <ExternalLink className="h-4 w-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </a>
+              </div>
+
+              <div className="md:col-span-2">
+                <ul className="space-y-2 text-sm md:text-base leading-relaxed">
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Custom front-end development and precise layout coding (HTML/CSS).
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Developed interactive UI elements and interface logic using JavaScript.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Full integration of custom-coded templates into the WordPress ecosystem.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-blue-500 mr-2">•</span>
+                    Advanced WordPress configuration, including complex plugin management and fine-tuning.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Window>
 
       <Window isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} title="Resume.pdf" icon="📄">
         <div className="prose prose-invert">
-          <p>PDF фрейм...</p>
+          <iframe src="/sd.pdf" width="100%" height="900px">
+            Your browser does not support viewing PDF files.
+            <a href="/sd.pdf">Download the file</a> to view it.
+          </iframe>
+          <div className="flex justify-center pt-5">
+            <Button variant="secondary" size="sm" aria-label="Submit">
+              Download pdf file
+            </Button>
+          </div>
         </div>
       </Window>
 

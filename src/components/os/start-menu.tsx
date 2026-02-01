@@ -19,7 +19,7 @@ export function StartMenu() {
       <PopoverContent side="top" align="start" sideOffset={20} alignOffset={-10} className="w-80 p-0 bg-black/80 backdrop-blur-xl border-white/20 text-white">
         <div className="flex flex-col h-[400px]">
           <div className="p-4 border-b border-white/10 flex items-center gap-3">
-            <img src="/man-user-circle-icon.svg" alt="icon" className="size-10 rounded-full" />
+            <Image src="/man-user-circle-icon.svg" width={40} height={40} alt="icon" className="size-10 rounded-full" />
             <div>
               <p className="text-sm font-medium">
                 Serhii <br /> Demchyshyn
