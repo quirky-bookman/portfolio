@@ -71,7 +71,7 @@ export function Window({ isOpen, onClose, title, icon, children }: WindowProps) 
           fixed z-50 p-0 overflow-hidden flex flex-col w-full
           border-2 border-white/10 bg-black/90 backdrop-blur-2xl
           text-white shadow-2xl focus:outline-none pointer-events-auto
-          ${isMaximized ? "inset-0 rounded-none" : "max-w-[600px] h-[450px] rounded-xl"}
+          ${isMaximized ? "inset-0 rounded-none" : "max-w-[760px] h-[450px] rounded-xl"}
         `}
         style={
           isMaximized

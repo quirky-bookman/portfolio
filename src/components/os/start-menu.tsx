@@ -2,10 +2,16 @@
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { LayoutGrid, User, Settings, LogOut, Power } from "lucide-react";
+import { LayoutGrid, Power } from "lucide-react";
 import Image from "next/image";
 
-export function StartMenu() {
+interface StartMenuProps {
+  onResumeClick: () => void;
+  onAboutMeClick: () => void;
+  onProjectsClick: () => void;
+}
+
+export function StartMenu({ onResumeClick, onAboutMeClick, onProjectsClick }: StartMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -28,13 +34,31 @@ export function StartMenu() {
           </div>
 
           <div className="flex-1 p-2 overflow-y-auto">
-            <button className="w-full flex items-center gap-2 p-2 hover:bg-white/10 rounded-md transition-colors text-sm">
+            <button
+              onClick={() => {
+                onResumeClick();
+                setIsOpen(false);
+              }}
+              className="w-full flex items-center gap-2 p-2 hover:bg-white/10 rounded-md transition-colors text-sm"
+            >
               <span className="text-lg">📄</span> Resume.pdf
             </button>
-            <button className="w-full flex items-center gap-3 p-2 hover:bg-white/10 rounded-md transition-colors text-sm">
+            <button
+              onClick={() => {
+                onAboutMeClick();
+                setIsOpen(false);
+              }}
+              className="w-full flex items-center gap-3 p-2 hover:bg-white/10 rounded-md transition-colors text-sm"
+            >
               <span className="text-lg">👤</span> About me
             </button>
-            <button className="w-full flex items-center gap-3 p-2 hover:bg-white/10 rounded-md transition-colors text-sm">
+            <button
+              onClick={() => {
+                onProjectsClick();
+                setIsOpen(false);
+              }}
+              className="w-full flex items-center gap-3 p-2 hover:bg-white/10 rounded-md transition-colors text-sm"
+            >
               <span className="text-lg">📁</span>
               Projects
             </button>
