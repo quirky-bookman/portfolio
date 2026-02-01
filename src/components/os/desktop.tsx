@@ -1,18 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Shortcut from "./shortcut";
 import { Window } from "./window";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
+import { LoadingScreen } from "./loading-screen";
 
 export function Desktop() {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
   const [isProjectsOpen, setIsProjectsOpen] = useState(false);
+  const [showLoading, setShowLoading] = useState(true);
 
   return (
     <div>
+      <LoadingScreen onComplete={() => setShowLoading(false)} duration={5000} />
+
       <Shortcut label="Resume.pdf" icon={<span className="text-4xl">📄</span>} onClick={() => setIsResumeOpen(true)} />
 
       <Shortcut label="About Me" icon={<span className="text-4xl">👤</span>} onClick={() => setIsAboutMeOpen(true)} />

@@ -28,9 +28,15 @@ export function StartMenu() {
           </div>
 
           <div className="flex-1 p-2 overflow-y-auto">
-            <div className="px-2 py-1.5 text-xs font-semibold text-white/40 uppercase">Pinned</div>
+            <button className="w-full flex items-center gap-2 p-2 hover:bg-white/10 rounded-md transition-colors text-sm">
+              <span className="text-lg">📄</span> Resume.pdf
+            </button>
             <button className="w-full flex items-center gap-3 p-2 hover:bg-white/10 rounded-md transition-colors text-sm">
-              <Settings className="h-4 w-4" /> Налаштування
+              <span className="text-lg">👤</span> About me
+            </button>
+            <button className="w-full flex items-center gap-3 p-2 hover:bg-white/10 rounded-md transition-colors text-sm">
+              <span className="text-lg">📁</span>
+              Projects
             </button>
           </div>
 
