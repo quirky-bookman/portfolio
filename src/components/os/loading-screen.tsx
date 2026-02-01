@@ -41,45 +41,6 @@ export function LoadingScreen({ onComplete, duration = 5000 }: LoadingScreenProp
 
   return (
     <div className={`fixed inset-0 bg-black z-50 transition-opacity duration-1000 flex items-center justify-center ${isComplete ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-      <style jsx>{`
-        @keyframes fadeInOut {
-          0% {
-            opacity: 0;
-            transform: translateY(-8px);
-          }
-          15% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          85% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          100% {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-        }
-
-        .animate-fadeInOut {
-          animation: fadeInOut 2s ease-in-out forwards;
-        }
-
-        @keyframes pulse-smooth {
-          0%,
-          100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-
-        .animate-pulse-smooth {
-          animation: pulse-smooth 2s ease-in-out infinite;
-        }
-      `}</style>
-
       <div className="flex flex-col items-center justify-center gap-12 px-4 w-full">
         <div className="text-center space-y-3">
           <h1 className="text-7xl sm:text-8xl font-black tracking-widest text-white drop-shadow-2xl animate-pulse-smooth" style={{ fontFamily: '"Space Grotesk", sans-serif', letterSpacing: "0.1em" }}>
@@ -92,7 +53,7 @@ export function LoadingScreen({ onComplete, duration = 5000 }: LoadingScreenProp
         <div className="w-full max-w-xs space-y-3">
           <div className="space-y-1">
             <div className="flex items-center justify-between text-white">
-              <div key={message} className="animate-fadeInOut text-left font-mono text-xs">
+              <div key={message} className="animate-fade-in-out text-left font-mono text-xs">
                 {message}
               </div>
               <p className="text-xs text-right font-mono">{Math.round(progress).toString().padStart(3, " ")}%</p>
