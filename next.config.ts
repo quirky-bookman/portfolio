@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 
 const repoName = "portfolio";
-const isProduction = process.env.NODE_ENV === "production";
+const isDeployment = process.env.DEPLOY_ENV === "github-pages";
 
 const nextConfig: NextConfig = {
-  basePath: isProduction ? `/${repoName}` : "",
-  assetPrefix: isProduction ? `/${repoName}/` : "",
+  basePath: isDeployment ? `/${repoName}` : "",
+  assetPrefix: isDeployment ? `/${repoName}/` : "",
   output: "export",
   images: {
     unoptimized: true
