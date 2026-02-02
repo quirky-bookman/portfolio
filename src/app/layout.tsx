@@ -4,6 +4,8 @@ import { Footer } from "@/components/layout/footer";
 import { DesktopProvider } from "@/components/os/desktop";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
+
   return (
     <DesktopProvider>
       <html lang="uk" suppressHydrationWarning>
@@ -15,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body>
           <div className="relative flex min-h-screen flex-col">
             <main className="relative flex-1 p-4">
-              <Image src="/bg-03.jpg" alt="OS Background" fill priority className="object-cover" />
+              <Image src={`${basePath}/bg-03.jpg`} alt="OS Background" fill priority className="object-cover" />
               <div className="absolute inset-0 bg-black/20" />
               <div className="relative z-10">{children}</div>
             </main>
