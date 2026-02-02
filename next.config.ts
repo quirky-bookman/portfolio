@@ -8,10 +8,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true
   },
-  ...(isDeployment && {
-    basePath: `/${repoName}`,
-    assetPrefix: `/${repoName}/`
-  })
+  basePath: isDeployment ? `/${repoName}` : "",
+  assetPrefix: isDeployment ? `/${repoName}/` : ""
 };
 
 export default nextConfig;
