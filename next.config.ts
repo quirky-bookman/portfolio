@@ -4,12 +4,14 @@ const repoName = "portfolio";
 const isDeployment = process.env.DEPLOY_ENV === "github-pages";
 
 const nextConfig: NextConfig = {
-  basePath: isDeployment ? `/${repoName}` : "",
-  assetPrefix: isDeployment ? `/${repoName}/` : "",
   output: "export",
   images: {
     unoptimized: true
-  }
+  },
+  ...(isDeployment && {
+    basePath: `/${repoName}`,
+    assetPrefix: `/${repoName}/`
+  })
 };
 
 export default nextConfig;
