@@ -1,15 +1,11 @@
 import type { NextConfig } from "next";
 
-const repoName = "portfolio";
-const isDeployment = process.env.DEPLOY_ENV === "github-pages" || process.env.NEXT_PUBLIC_DEPLOY_ENV === "github-pages";
-
 const nextConfig: NextConfig = {
+  /* config options here */
   output: "export",
   images: {
-    unoptimized: true
-  },
-  basePath: isDeployment ? `/${repoName}` : "",
-  assetPrefix: isDeployment ? `/${repoName}/` : ""
+    qualities: [25, 50, 75, 80, 100]
+  }
 };
 
 export default nextConfig;
