@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Maximize2, Minimize2, X, Minus } from "lucide-react";
+import { DesktopContext } from "@/components/os/desktop";
 
 interface WindowProps {
   isOpen: boolean;
@@ -11,22 +12,33 @@ interface WindowProps {
   title: string;
   icon?: React.ReactNode;
   children: React.ReactNode;
+  windowId: string;
 }
 
-export function Window({ isOpen, onClose, title, icon, children }: WindowProps) {
+export function Window({ isOpen, onClose, title, icon, children, windowId }: WindowProps) {
   const [isMaximized, setIsMaximized] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0, posX: 0, posY: 0 });
   const nodeRef = useRef<HTMLDivElement>(null);
+  const context = useContext(DesktopContext);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  const isActive = context?.activeWindow === windowId;
+  const baseZIndex = 50;
+  const zIndex = isActive ? baseZIndex + 100 : baseZIndex;
+
+  const handleWindowFocus = () => {
+    context?.setActiveWindow(windowId);
+  };
+
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     if (isMaximized) return;
+    handleWindowFocus();
     setIsDragging(true);
     setDragStart({
       x: e.clientX,
@@ -67,21 +79,24 @@ export function Window({ isOpen, onClose, title, icon, children }: WindowProps) 
     <Dialog open={isOpen} onOpenChange={(o) => !o && onClose()}>
       <div
         ref={nodeRef}
+        onClick={handleWindowFocus}
         className={`
-          fixed z-50 p-0 overflow-hidden flex flex-col w-full
+          fixed p-0 overflow-hidden flex flex-col w-full
           border-2 border-white/10 bg-black/90 backdrop-blur-2xl
           text-white shadow-2xl focus:outline-none pointer-events-auto
+          ${isActive ? "border-blue-500/50" : "border-white/10"}
           ${isMaximized ? "inset-0 rounded-none" : "max-w-[760px] h-[450px] rounded-xl"}
         `}
-        style={
-          isMaximized
+        style={{
+          zIndex: zIndex,
+          ...(isMaximized
             ? {}
             : {
                 left: "50%",
                 top: "50%",
                 transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px))`
-              }
-        }
+              })
+        }}
       >
         <VisuallyHidden>
           <DialogHeader>

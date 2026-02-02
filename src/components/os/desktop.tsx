@@ -15,14 +15,17 @@ export const DesktopContext = createContext<{
   setIsAboutMeOpen: (value: boolean) => void;
   isProjectsOpen: boolean;
   setIsProjectsOpen: (value: boolean) => void;
+  activeWindow: string | null;
+  setActiveWindow: (windowId: string | null) => void;
 } | null>(null);
 
 export function DesktopProvider({ children }: { children: ReactNode }) {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
   const [isProjectsOpen, setIsProjectsOpen] = useState(false);
+  const [activeWindow, setActiveWindow] = useState<string | null>(null);
 
-  return <DesktopContext.Provider value={{ isResumeOpen, setIsResumeOpen, isAboutMeOpen, setIsAboutMeOpen, isProjectsOpen, setIsProjectsOpen }}>{children}</DesktopContext.Provider>;
+  return <DesktopContext.Provider value={{ isResumeOpen, setIsResumeOpen, isAboutMeOpen, setIsAboutMeOpen, isProjectsOpen, setIsProjectsOpen, activeWindow, setActiveWindow }}>{children}</DesktopContext.Provider>;
 }
 
 export function Desktop() {
@@ -33,7 +36,7 @@ export function Desktop() {
     return null;
   }
 
-  const { isResumeOpen, setIsResumeOpen, isAboutMeOpen, setIsAboutMeOpen, isProjectsOpen, setIsProjectsOpen } = context;
+  const { isResumeOpen, setIsResumeOpen, isAboutMeOpen, setIsAboutMeOpen, isProjectsOpen, setIsProjectsOpen, activeWindow, setActiveWindow } = context;
 
   return (
     <>
@@ -46,12 +49,12 @@ export function Desktop() {
 
         <Shortcut label="Projects" icon={<span className="text-4xl">📁</span>} onClick={() => setIsProjectsOpen(true)} />
 
-        <Window isOpen={isProjectsOpen} onClose={() => setIsProjectsOpen(false)} title="Resume.pdf" icon="📄">
+        <Window isOpen={isProjectsOpen} onClose={() => setIsProjectsOpen(false)} title="Resume.pdf" icon="📄" windowId="projects">
           <div className="prose prose-invert">
             <div className="max-w-4xl mx-auto p-6 bg-black text-gray-300">
               <h2 className="text-2xl font-bold mb-10 text-white border-b border-gray-800 pb-4">Projects</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="md:col-span-1 flex flex-col justify-start">
                   <h3 className="text-xl font-semibold text-white mb-2">Speedrack West</h3>
                   <a href="https://www.speedrackwest.com/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
@@ -81,11 +84,207 @@ export function Desktop() {
                   </ul>
                 </div>
               </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="md:col-span-1 flex flex-col justify-start">
+                  <h3 className="text-xl font-semibold text-white mb-2">Fuego Camina Conmigo</h3>
+                  <a href="https://fuegocaminaconmigo.com/en/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
+                    Visit Website
+                    <ExternalLink className="h-4 w-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
+
+                <div className="md:col-span-2">
+                  <ul className="space-y-2 text-sm md:text-base leading-relaxed">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Responsive front-end development based on provided design.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      WordPress theme integration and customization.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Implementation of sliders using Swiper.js.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Smooth animations and interactions powered by GSAP.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="md:col-span-1 flex flex-col justify-start">
+                  <h3 className="text-xl font-semibold text-white mb-2">Samkaup</h3>
+                  <a href="https://www.samkaup.is/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
+                    Visit Website
+                    <ExternalLink className="h-4 w-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
+
+                <div className="md:col-span-2">
+                  <ul className="space-y-2 text-sm md:text-base leading-relaxed">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Pixel-perfect layout development for WordPress.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Scroll-based animations using ScrollReveal.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Media galleries and modals implemented with Fancybox.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Interactive sliders built with Swiper.js.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="md:col-span-1 flex flex-col justify-start">
+                  <h3 className="text-xl font-semibold text-white mb-2">Recrea Gastronomia</h3>
+                  <a href="https://recreagastronomia.com/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
+                    Visit Website
+                    <ExternalLink className="h-4 w-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
+
+                <div className="md:col-span-2">
+                  <ul className="space-y-2 text-sm md:text-base leading-relaxed">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Custom WordPress-based layout development.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Theme integration and content structure setup.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Configuration and customization of Contact Form 7.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="md:col-span-1 flex flex-col justify-start">
+                  <h3 className="text-xl font-semibold text-white mb-2">Carnet Barcelona</h3>
+                  <a href="https://carnetbarcelona.com/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
+                    Visit Website
+                    <ExternalLink className="h-4 w-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
+
+                <div className="md:col-span-2">
+                  <ul className="space-y-2 text-sm md:text-base leading-relaxed">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Front-end layout development tailored for WordPress.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Theme integration and responsive optimization.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="md:col-span-1 flex flex-col justify-start">
+                  <h3 className="text-xl font-semibold text-white mb-2">Premios ADCV</h3>
+                  <a href="https://premiosadcv.com/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
+                    Visit Website
+                    <ExternalLink className="h-4 w-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
+
+                <div className="md:col-span-2">
+                  <ul className="space-y-2 text-sm md:text-base leading-relaxed">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      WordPress-oriented front-end layout development.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Integration of custom templates into CMS structure.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="md:col-span-1 flex flex-col justify-start">
+                  <h3 className="text-xl font-semibold text-white mb-2">Conrent Tramway</h3>
+                  <a href="https://www.conrentramway.com/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
+                    Visit Website
+                    <ExternalLink className="h-4 w-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
+
+                <div className="md:col-span-2">
+                  <ul className="space-y-2 text-sm md:text-base leading-relaxed">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Layout development and WordPress integration.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Plugin setup and configuration according to project needs.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="md:col-span-1 flex flex-col justify-start">
+                  <h3 className="text-xl font-semibold text-white mb-2">Anamas Projects</h3>
+                  <a href="https://www.anamasprojects.com/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
+                    Visit Website
+                    <ExternalLink className="h-4 w-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
+
+                <div className="md:col-span-2">
+                  <ul className="space-y-2 text-sm md:text-base leading-relaxed">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Custom WordPress layout development.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Plugin configuration and performance fine-tuning.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="md:col-span-1 flex flex-col justify-start">
+                  <h3 className="text-xl font-semibold text-white mb-2">Batlle i Roig</h3>
+                  <a href="https://www.batlleiroig.com/" target="_blank" className="flex items-center text-blue-400 hover:text-blue-300 transition-colors group">
+                    Visit Website
+                    <ExternalLink className="h-4 w-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
+
+                <div className="md:col-span-2">
+                  <ul className="space-y-2 text-sm md:text-base leading-relaxed">
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Front-end layout development for WordPress CMS.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-blue-500 mr-2">•</span>
+                      Plugin setup and site functionality configuration.
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </Window>
 
-        <Window isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} title="Resume.pdf" icon="📄">
+        <Window isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} title="Resume.pdf" icon="📄" windowId="resume">
           <div className="prose prose-invert">
             <iframe src="/sd.pdf" width="100%" height="900px">
               Your browser does not support viewing PDF files.
@@ -101,7 +300,7 @@ export function Desktop() {
           </div>
         </Window>
 
-        <Window isOpen={isAboutMeOpen} onClose={() => setIsAboutMeOpen(false)} title="About Me" icon="👤">
+        <Window isOpen={isAboutMeOpen} onClose={() => setIsAboutMeOpen(false)} title="About Me" icon="👤" windowId="about">
           <div className="prose prose-invert">
             <header className="mb-10">
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">Serhii Demchyshyn</h1>

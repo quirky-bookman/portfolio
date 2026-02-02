@@ -47,7 +47,7 @@ export function LoadingScreen({ onComplete, duration = 5000 }: LoadingScreenProp
             SerhiiOS
           </h1>
           <div className="h-1 w-32 mx-auto from-transparent via-white to-transparent opacity-50" />
-          <p className="text-white/40 text-xs tracking-widest font-mono">⚙️ SYSTEM INITIALIZATION</p>
+          <p className="text-white/40 text-xs tracking-widest font-mono">SYSTEM INITIALIZATION</p>
         </div>
 
         <div className="w-full max-w-xs space-y-3">
