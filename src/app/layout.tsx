@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body>
           <div className="relative flex min-h-screen flex-col">
             <main className="relative flex-1 p-4">
-              <Image src="/bg-03.jpg" alt="OS Background" fill priority className="object-cover" />
+              <Image src="/bg-03.jpg" alt="OS Background" fill priority quality={80} className="object-cover" />
               <div className="absolute inset-0 bg-black/20" />
               <div className="relative z-10">{children}</div>
             </main>
