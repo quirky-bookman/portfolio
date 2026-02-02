@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
+const repoName = "portfolio";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  basePath: `/${repoName}`,
+  assetPrefix: `/${repoName}`,
   output: "export",
   images: {
     qualities: [25, 50, 75, 80, 100]
