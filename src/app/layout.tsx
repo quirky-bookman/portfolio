@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/footer";
 import { DesktopProvider } from "@/components/os/desktop";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const basePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   return (
     <DesktopProvider>

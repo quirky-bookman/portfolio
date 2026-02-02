@@ -17,6 +17,7 @@ export function StartMenu({ onResumeClick, onAboutMeClick, onProjectsClick }: St
   const [shutdownVisible, setShutdownVisible] = useState(false);
   const [showPowerButton, setShowPowerButton] = useState(false);
   const [showBoot, setShowBoot] = useState(false);
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   useEffect(() => {
     let t: ReturnType<typeof setTimeout> | null = null;
@@ -43,7 +44,7 @@ export function StartMenu({ onResumeClick, onAboutMeClick, onProjectsClick }: St
         <PopoverContent side="top" align="start" sideOffset={20} alignOffset={-10} className="w-80 p-0 bg-black/80 backdrop-blur-xl border-white/20 text-white">
           <div className="flex flex-col h-[400px]">
             <div className="p-4 border-b border-white/10 flex items-center gap-3">
-              <Image src="/man-user-circle-icon.svg" width={40} height={40} alt="icon" className="size-10 rounded-full" />
+              <Image src={`${basePath}/man-user-circle-icon.svg`} width={40} height={40} alt="icon" className="size-10 rounded-full" />
               <div>
                 <p className="text-sm font-medium">
                   Serhii <br /> Demchyshyn

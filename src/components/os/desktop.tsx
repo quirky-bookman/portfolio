@@ -30,6 +30,7 @@ export function DesktopProvider({ children }: { children: ReactNode }) {
 
 export function Desktop() {
   const [showLoading, setShowLoading] = useState(true);
+  const [basePath] = useState(() => process.env.NEXT_PUBLIC_BASE_PATH || "");
   const context = useContext(DesktopContext);
 
   if (!context) {
@@ -286,13 +287,13 @@ export function Desktop() {
 
         <Window isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} title="Resume.pdf" icon="📄" windowId="resume">
           <div className="prose prose-invert">
-            <iframe src="/sd.pdf" width="100%" height="900px">
+            <iframe src={`${basePath}/sd.pdf`} width="100%" height="900px">
               Your browser does not support viewing PDF files.
-              <a href="/sd.pdf">Download the file</a> to view it.
+              <a href={`${basePath}/sd.pdf`}>Download the file</a> to view it.
             </iframe>
             <div className="flex justify-center pt-5">
               <Button variant="secondary" size="sm" aria-label="Submit" asChild>
-                <Link href="/sd.pdf" target="_blank" aria-label="Download PDF">
+                <Link href={`${basePath}/sd.pdf`} target="_blank" aria-label="Download PDF">
                   Download pdf file
                 </Link>
               </Button>
