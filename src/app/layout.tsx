@@ -3,9 +3,6 @@ import Image from "next/image";
 import { Footer } from "@/components/layout/footer";
 import { DesktopProvider } from "@/components/os/desktop";
 
-const isProd = process.env.NODE_ENV === "production";
-const prefix = isProd ? "/portfolio" : "";
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <DesktopProvider>
@@ -18,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body>
           <div className="relative flex min-h-screen flex-col">
             <main className="relative flex-1 p-4">
-              <Image src={`${process.env.NEXT_PUBLIC_BASE_PATH || ""}/bg-03.jpg`} alt="OS Background" fill priority className="object-cover" />
+              <Image src="bg-03.jpg" alt="OS Background" fill priority quality={80} className="object-cover" />
               <div className="absolute inset-0 bg-black/20" />
               <div className="relative z-10">{children}</div>
             </main>
