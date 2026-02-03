@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet" />
         </head>
         <body>
-          <div className="relative flex min-h-screen flex-col">
+          <div className="relative flex min-h-dvh flex-col">
             <main className="relative flex-1 p-4">
               <Image src="bg-03.jpg" alt="OS Background" fill priority quality={80} className="object-cover" />
               <div className="absolute inset-0 bg-black/20" />
