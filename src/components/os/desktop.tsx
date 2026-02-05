@@ -43,11 +43,32 @@ export function Desktop() {
       <div>
         <LoadingScreen onComplete={() => setShowLoading(false)} duration={5000} />
 
-        <Shortcut label="Resume.pdf" icon={<span className="text-4xl">📄</span>} onClick={() => setIsResumeOpen(true)} />
+        <Shortcut
+          label="Resume.pdf"
+          icon={<span className="text-4xl">📄</span>}
+          onClick={() => {
+            setIsResumeOpen(true);
+            setActiveWindow("resume");
+          }}
+        />
 
-        <Shortcut label="About Me" icon={<span className="text-4xl">👤</span>} onClick={() => setIsAboutMeOpen(true)} />
+        <Shortcut
+          label="About Me"
+          icon={<span className="text-4xl">👤</span>}
+          onClick={() => {
+            setIsAboutMeOpen(true);
+            setActiveWindow("about");
+          }}
+        />
 
-        <Shortcut label="Projects" icon={<span className="text-4xl">📁</span>} onClick={() => setIsProjectsOpen(true)} />
+        <Shortcut
+          label="Projects"
+          icon={<span className="text-4xl">📁</span>}
+          onClick={() => {
+            setIsProjectsOpen(true);
+            setActiveWindow("projects");
+          }}
+        />
 
         <Window isOpen={isProjectsOpen} onClose={() => setIsProjectsOpen(false)} title="Resume.pdf" icon="📄" windowId="projects">
           <div className="prose prose-invert">
